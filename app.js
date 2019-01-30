@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-require('@babel/register')({
-  ignore: [
-    /node_modules\/(?!@sequencemedia)/
-  ]
-})
+require('@babel/register')
 
 require('dotenv/config')
 

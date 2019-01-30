@@ -16,8 +16,10 @@ const plugins = [
   'syntax-async-functions',
   [
     'module-resolver', {
+      root: ['./src'],
+      cwd: 'babelrc',
       alias: {
-        'itunes-library': './src'
+        '~': './src'
       }
     }
   ]

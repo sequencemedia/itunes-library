@@ -10,7 +10,7 @@ import * as itunesLibraryParser from '@sequencemedia/itunes-library-parser'
 import {
   hasChanges,
   putChanges
-} from 'itunes-library'
+} from '~'
 
 const {
   library: {
