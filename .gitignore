@@ -1,0 +1,22 @@
+# Node modules
+/node_modules
+
+# Mac
+.DS_Store
+
+# Development
+*.xml
+*.json
+*.m3u8
+*.m3u
+/iTunes Library
+
+# Production
+.env
+
+# Execution
+bin
+
+# Babel
+lib
+
