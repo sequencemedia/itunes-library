@@ -6,7 +6,9 @@ require('dotenv/config')
 
 const debug = require('debug')
 
-const { readFile } = require('sacred-fs')
+const {
+  readFile
+} = require('sacred-fs')
 
 const {
   library,
@@ -21,16 +23,16 @@ const commander = require('commander')
 const app = async () => {
   const error = debug('itunes-library:error')
 
-  try {
-    const {
-      argv,
-      env: {
-        JAR,
-        XML,
-        DESTINATION
-      }
-    } = process
+  const {
+    argv,
+    env: {
+      JAR,
+      XML,
+      DESTINATION
+    }
+  } = process
 
+  try {
     const {
       version
     } = JSON.parse(await readFile('./package.json', 'utf8'))
@@ -43,38 +45,50 @@ const app = async () => {
       .option('-t, --tracks', 'Parse all tracks')
       .option('-p, --playlists', 'Parse all playlists')
       .parse(argv)
-
-    const {
-      jar = JAR,
-      xml = XML,
-      destination = DESTINATION,
-      tracks: t = false,
-      playlists: p = false
-    } = commander
-
-    const error = debug('itunes-library:to-m3u:error')
-
-    const l = (
-      (t && p) || (!t && !p)
-    )
-
-    try {
-      if (l) {
-        return await library.toM3U(jar, xml, destination)
-      }
-
-      if (t) {
-        return await tracks.toM3U(jar, xml, destination)
-      }
-
-      if (p) {
-        return await playlists.toM3U(jar, xml, destination)
-      }
-    } catch (e) {
-      error(e)
-    }
   } catch (e) {
     error(e)
+  }
+
+  const {
+    jar = JAR,
+    xml = XML,
+    destination = DESTINATION,
+    tracks: t = false,
+    playlists: p = false
+  } = commander
+
+  const l = (
+    (t && p) || (!t && !p)
+  )
+
+  if (l) {
+    try {
+      await library.toM3U(jar, xml, destination)
+    } catch (e) {
+      const error = debug('itunes-library:to-m3u:error')
+
+      error(e)
+    }
+  } else {
+    if (t) {
+      try {
+        await tracks.toM3U(jar, xml, destination)
+      } catch (e) {
+        const error = debug('itunes-library:to-m3u:error')
+
+        error(e)
+      }
+    }
+
+    if (p) {
+      try {
+        await playlists.toM3U(jar, xml, destination)
+      } catch (e) {
+        const error = debug('itunes-library:to-m3u:error')
+
+        error(e)
+      }
+    }
   }
 }
 

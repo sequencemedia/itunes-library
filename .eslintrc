@@ -9,5 +9,13 @@
   "parserOptions": {
     "ecmaVersion": 6
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "overrides": [
+    {
+      "files": ["app.js"],
+      "rules": {
+        "no-useless-return": "off"
+      }
+    }
+  ]
 }
