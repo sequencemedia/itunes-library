@@ -2,8 +2,6 @@ import debug from 'debug'
 
 const log = debug('itunes-library:log')
 
-export const initialise = () => { }
-
 export const hasChanges = ({
   size,
   atimeMs,
