@@ -25,7 +25,7 @@ const {
 const error = debug('itunes-library:transform:error')
 
 function listenerFactory ({ xml, statsMap, jar, transform = () => {}, func = () => {} }) {
-  return async (eventType) => {
+  return async function (eventType) {
     if (eventType === 'change') {
       try {
         const stats = await stat(xml)
@@ -36,8 +36,8 @@ function listenerFactory ({ xml, statsMap, jar, transform = () => {}, func = () 
             await transform(jar, xml)
           )
         }
-      } catch (e) {
-        error(e)
+      } catch ({ message }) {
+        error(message)
       }
     }
   }
@@ -57,10 +57,10 @@ export async function toJSON (jar, xml, func = () => {}) {
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
 
     return s
-  } catch (e) {
+  } catch ({ message }) {
     if (watcher) watcher.close()
 
-    error(e)
+    error(message)
   }
 }
 
@@ -78,10 +78,10 @@ export async function toJS (jar, xml, func = () => {}) {
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
 
     return o
-  } catch (e) {
+  } catch ({ message }) {
     if (watcher) watcher.close()
 
-    error(e)
+    error(message)
   }
 }
 
@@ -99,9 +99,9 @@ export async function toES (jar, xml, func = () => {}) {
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
 
     return m
-  } catch (e) {
+  } catch ({ message }) {
     if (watcher) watcher.close()
 
-    error(e)
+    error(message)
   }
 }

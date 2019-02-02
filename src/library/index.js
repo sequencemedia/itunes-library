@@ -24,7 +24,7 @@ const {
 const error = debug('itunes-library:error')
 
 function listenerFactory ({ xml, statsMap, parse = () => {}, jar, destination }) {
-  return async (eventType) => {
+  return async function (eventType) {
     if (eventType === 'change') {
       try {
         const stats = await stat(xml)
@@ -33,8 +33,8 @@ function listenerFactory ({ xml, statsMap, parse = () => {}, jar, destination })
 
           await parse(jar, xml, destination)
         }
-      } catch (e) {
-        error(e)
+      } catch ({ message }) {
+        error(message)
       }
     }
   }
@@ -57,10 +57,10 @@ export async function toM3U (jar, xml, destination = '') {
     const listener = listenerFactory({ jar, xml, statsMap, parse: parseToM3U, destination: destinationForM3Us })
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
-  } catch (e) {
+  } catch ({ message }) {
     if (watcher) watcher.close()
 
-    error(e)
+    error(message)
   }
 }
 
