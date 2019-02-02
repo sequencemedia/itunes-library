@@ -58,6 +58,11 @@ export async function toJSON (jar, xml, func = () => {}) {
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
 
+    watcher
+      .on('error', ({ message }) => {
+        error('Error in watcher', message)
+      })
+
     return s
   } catch ({ message }) {
     if (watcher) watcher.close()
@@ -79,6 +84,11 @@ export async function toJS (jar, xml, func = () => {}) {
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
 
+    watcher
+      .on('error', ({ message }) => {
+        error('Error in watcher', message)
+      })
+
     return o
   } catch ({ message }) {
     if (watcher) watcher.close()
@@ -99,6 +109,11 @@ export async function toES (jar, xml, func = () => {}) {
     const listener = listenerFactory({ jar, xml, statsMap, transform: transformToES, func })
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
+
+    watcher
+      .on('error', ({ message }) => {
+        error('Error in watcher', message)
+      })
 
     return m
   } catch ({ message }) {
