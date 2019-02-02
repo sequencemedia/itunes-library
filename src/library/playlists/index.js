@@ -1,3 +1,6 @@
+import os from 'os'
+import path from 'path'
+
 import {
   stat,
   watch
@@ -47,9 +50,13 @@ export async function toM3U (jar, xml, destination) {
 
     putChanges(stats, statsMap)
 
-    await parseToM3U(jar, xml, destination)
+    const destinationForM3Us = destination
+      ? path.resolve(destination.replace('~', os.homedir))
+      : destination
 
-    const listener = listenerFactory({ jar, xml, parse: parseToM3U, statsMap, destination })
+    await parseToM3U(jar, xml, destinationForM3Us)
+
+    const listener = listenerFactory({ jar, xml, parse: parseToM3U, statsMap, destination: destinationForM3Us })
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
   } catch (e) {
