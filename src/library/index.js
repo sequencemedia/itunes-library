@@ -57,6 +57,11 @@ export async function toM3U (jar, xml, destination = '') {
     const listener = listenerFactory({ jar, xml, statsMap, parse: parseToM3U, destination: destinationForM3Us })
 
     watcher = await watch(xml, { encoding: 'utf8' }, listener)
+
+    watcher
+      .on('error', ({ message }) => {
+        error('Error in watcher', message)
+      })
   } catch ({ message }) {
     if (watcher) watcher.close()
 
