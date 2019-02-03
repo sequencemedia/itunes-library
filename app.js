@@ -31,7 +31,7 @@ const app = async () => {
     const s = await readFile('./package.json', 'utf8')
     PACKAGE = JSON.parse(s)
   } catch (e) {
-    const error = debug('itunes-library:process:error')
+    const error = debug('itunes-library:error')
 
     error(e)
   }
@@ -54,7 +54,11 @@ const app = async () => {
         pid
       } = a.find(({ pid }) => pid !== PID)
 
-      throw new Error(`Application "${name}" has already started in process ${pid}.`)
+      const log = debug('itunes-library:process:log')
+
+      log(`Killing application "${name}" in process ${pid}.`)
+
+      process.kill(pid)
     }
   } catch ({ message }) {
     const error = debug('itunes-library:process:error')
