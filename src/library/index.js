@@ -1,19 +1,11 @@
 import os from 'os'
 import path from 'path'
 
-import {
-  stat,
-  watch
-} from 'sacred-fs'
+import chokidar from 'chokidar'
 
 import debug from 'debug'
 
 import * as itunesLibraryParser from '@sequencemedia/itunes-library-parser'
-
-import {
-  hasChanges,
-  putChanges
-} from '~'
 
 const {
   library: {
@@ -23,42 +15,22 @@ const {
 
 const error = debug('itunes-library:error')
 
-function listenerFactory ({ xml, statsMap, parse = () => {}, jar, destination }) {
-  return async function (eventType) {
-    if (eventType === 'change') {
-      try {
-        const stats = await stat(xml)
-        if (hasChanges(stats, statsMap)) {
-          putChanges(stats, statsMap)
-
-          await parse(jar, xml, destination)
-        }
-      } catch ({ message }) {
-        error(message)
-      }
-    }
-  }
-}
-
 export async function toM3U (jar, xml, destination = '') {
   let watcher
   try {
-    const stats = await stat(xml)
-    const statsMap = new Map()
+    const x = xml
+      ? path.resolve(xml.replace('~', os.homedir))
+      : xml
 
-    putChanges(stats, statsMap)
-
-    const destinationForM3Us = destination
+    const d = destination
       ? path.resolve(destination.replace('~', os.homedir))
       : destination
 
-    await parseToM3U(jar, xml, destinationForM3Us)
-
-    const listener = listenerFactory({ jar, xml, statsMap, parse: parseToM3U, destination: destinationForM3Us })
-
-    watcher = await watch(xml, { encoding: 'utf8' }, listener)
+    watcher = chokidar.watch(x)
 
     watcher
+      .on('ready', async () => parseToM3U(jar, x, d))
+      .on('change', async () => parseToM3U(jar, x, d))
       .on('error', ({ message }) => {
         error('Error in watcher', message)
       })

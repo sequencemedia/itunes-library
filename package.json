@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "@sequencemedia/itunes-library-parser": "latest",
+    "chokidar": "^2.0.4",
     "commander": "^2.19.0",
     "cross-env": "^5.2.0",
     "debug": "^4.1.1",
