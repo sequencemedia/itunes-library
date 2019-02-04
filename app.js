@@ -17,8 +17,8 @@ const {
   library: {
     tracks,
     playlists
-  }
-} = require('./src')
+  } = {}
+} = require('./src/watch')
 
 const commander = require('commander')
 
@@ -107,32 +107,14 @@ const app = async () => {
   )
 
   if (l) {
-    try {
-      await library.toM3U(jar, xml, destination)
-    } catch (e) {
-      const error = debug('itunes-library:to-m3u:error')
-
-      error(e)
-    }
+    library.toM3U(jar, xml, destination)
   } else {
     if (t) {
-      try {
-        await tracks.toM3U(jar, xml, destination)
-      } catch (e) {
-        const error = debug('itunes-library:to-m3u:error')
-
-        error(e)
-      }
+      tracks.toM3U(jar, xml, destination)
     }
 
     if (p) {
-      try {
-        await playlists.toM3U(jar, xml, destination)
-      } catch (e) {
-        const error = debug('itunes-library:to-m3u:error')
-
-        error(e)
-      }
+      playlists.toM3U(jar, xml, destination)
     }
   }
 }

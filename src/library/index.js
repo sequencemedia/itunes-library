@@ -1,8 +1,6 @@
 import os from 'os'
 import path from 'path'
 
-import chokidar from 'chokidar'
-
 import debug from 'debug'
 
 import * as itunesLibraryParser from '@sequencemedia/itunes-library-parser'
@@ -15,9 +13,12 @@ const {
 
 const error = debug('itunes-library:error')
 
-export async function toM3U (jar, xml, destination = '') {
-  let watcher
+export async function toM3U (jar, xml, destination) {
   try {
+    const j = jar
+      ? path.resolve(jar.replace('~', os.homedir))
+      : jar
+
     const x = xml
       ? path.resolve(xml.replace('~', os.homedir))
       : xml
@@ -26,17 +27,8 @@ export async function toM3U (jar, xml, destination = '') {
       ? path.resolve(destination.replace('~', os.homedir))
       : destination
 
-    watcher = chokidar.watch(x)
-
-    watcher
-      .on('ready', async () => parseToM3U(jar, x, d))
-      .on('change', async () => parseToM3U(jar, x, d))
-      .on('error', ({ message }) => {
-        error('Error in watcher', message)
-      })
+    return await parseToM3U(j, x, d)
   } catch ({ message }) {
-    if (watcher) watcher.close()
-
     error(message)
   }
 }
