@@ -48,7 +48,7 @@ export function toJSON (jar, xml, func = () => {}) {
   )
 }
 
-export async function toJS (jar, xml, func = () => {}) {
+export function toJS (jar, xml, func = () => {}) {
   const j = jar
     ? path.resolve(jar.replace('~', os.homedir))
     : jar
