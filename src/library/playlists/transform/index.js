@@ -19,7 +19,7 @@ const {
 
 const error = debug('itunes-library:transform:error')
 
-export async function toJSON (jar, xml, func = () => {}) {
+export async function toJSON (jar, xml) {
   try {
     const j = jar
       ? path.resolve(jar.replace('~', os.homedir))
@@ -35,7 +35,7 @@ export async function toJSON (jar, xml, func = () => {}) {
   }
 }
 
-export async function toJS (jar, xml, func = () => {}) {
+export async function toJS (jar, xml) {
   try {
     const j = jar
       ? path.resolve(jar.replace('~', os.homedir))
@@ -51,7 +51,7 @@ export async function toJS (jar, xml, func = () => {}) {
   }
 }
 
-export async function toES (jar, xml, func = () => {}) {
+export async function toES (jar, xml) {
   try {
     const j = jar
       ? path.resolve(jar.replace('~', os.homedir))
