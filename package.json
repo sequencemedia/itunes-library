@@ -58,7 +58,7 @@
     "eslint-plugin-standard": "^4.0.1"
   },
   "dependencies": {
-    "@sequencemedia/itunes-library-parser": "^0.1.5",
+    "@sequencemedia/itunes-library-parser": "^0.1.6",
     "chokidar": "^3.0.2",
     "commander": "^3.0.0",
     "cross-env": "^5.2.0",
