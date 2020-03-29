@@ -7,8 +7,8 @@
     "babel": "babel src -d lib",
     "lint": "eslint *.js src",
     "lint:fix": "npm run lint -- --fix",
-    "start": "cross-env NODE_ENV=production node app",
-    "start:dev": "cross-env DEBUG=itunes*,-babel* NODE_ENV=development node app",
+    "start": "cross-env DEBUG=itunes-library* NODE_ENV=production node app",
+    "start:dev": "cross-env DEBUG=itunes-library*,-babel* NODE_ENV=development node app",
     "build": "npm run babel",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build"
