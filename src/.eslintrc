@@ -1,0 +1,17 @@
+{
+  "overrides": [
+    {
+      "files": [
+        "library/index.js",
+        "library/playlists/index.js",
+        "library/tracks/index.js",
+        "watch/library/index.js",
+        "watch/library/playlists/index.js",
+        "watch/library/tracks/index.js"
+      ],
+      "rules": {
+        "import/export": "off"
+      }
+    }
+  ]
+}

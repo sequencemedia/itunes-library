@@ -1,28 +1,7 @@
 {
   "name": "@sequencemedia/itunes-library",
-  "description": "Watch iTunes Library XML and parse to M3U",
   "version": "0.1.15",
-  "main": "app.js",
-  "scripts": {
-    "babel": "babel src -d lib",
-    "lint": "eslint *.js src",
-    "lint:fix": "npm run lint -- --fix",
-    "start": "cross-env DEBUG=itunes-library* NODE_ENV=production node app",
-    "start:dev": "cross-env DEBUG=itunes-library*,-babel* NODE_ENV=development node app",
-    "build": "npm run babel",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
-  },
-  "author": "Jonathan Perry <sequencemedia@sequencemedia.net>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/sequencemedia/itunes-library"
-  },
-  "bugs": {
-    "url": "https://github.com/sequencemedia/itunes-library/issues"
-  },
-  "homepage": "https://github.com/sequencemedia/itunes-library",
+  "description": "Watch iTunes Library XML and parse to M3U",
   "keywords": [
     "itunes",
     "library",
@@ -37,6 +16,40 @@
     "m3u",
     "m3u8"
   ],
+  "main": "./app.js",
+  "author": "Jonathan Perry for Sequence Media Limited <sequencemedia@sequencemedia.net>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sequencemedia/itunes-library"
+  },
+  "homepage": "https://github.com/sequencemedia/itunes-library",
+  "bugs": {
+    "url": "https://github.com/sequencemedia/itunes-library/issues"
+  },
+  "scripts": {
+    "babel": "babel src -d lib",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "cross-env DEBUG=itunes-library* NODE_ENV=production node app",
+    "start:dev": "cross-env DEBUG=itunes-library* NODE_ENV=development node app",
+    "build": "npm run babel",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@sequencemedia/itunes-library-parser": "0.1.15",
+    "chokidar": "^3.4.0",
+    "commander": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "ps-list": "^7.2.0",
+    "supports-color": "^7.1.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.10.3",
     "@babel/core": "^7.10.3",
@@ -56,15 +69,5 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1"
-  },
-  "dependencies": {
-    "@sequencemedia/itunes-library-parser": "0.1.15",
-    "chokidar": "^3.4.0",
-    "commander": "^5.1.0",
-    "cross-env": "^7.0.2",
-    "debug": "^4.1.1",
-    "dotenv": "^8.2.0",
-    "ps-list": "^7.2.0",
-    "supports-color": "^7.1.0"
   }
 }
