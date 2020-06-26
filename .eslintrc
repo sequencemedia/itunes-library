@@ -1,15 +1,18 @@
 {
+  "extends": "standard",
   "env": {
-    "es6": true,
-    "node": true
-  },
-  "extends": [
-    "standard"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 6
+    "node": true,
+    "es2020": true
   },
   "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "overrides": [
     {
       "files": ["app.js"],
