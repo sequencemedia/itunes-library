@@ -23,7 +23,7 @@ const PACKAGE = require('./package')
 const NAME = 'il.App'
 process.title = NAME
 
-const app = async () => {
+async function app () {
   const {
     name
   } = PACKAGE
@@ -32,7 +32,9 @@ const app = async () => {
    *  Permit only one instance of the application
    */
   try {
-    const a = (await psList()).filter(({ name }) => name === NAME)
+    const a = (await psList())
+      .filter(({ name }) => name === NAME)
+
     if (a.length > 1) {
       const {
         pid: PID
@@ -95,14 +97,31 @@ const app = async () => {
   )
 
   if (l) {
-    library.toM3U(jar, xml, destination)
+    log(`Application "${name}" in process ${pid} watching Library.`)
+
+    log({ jar, xml, destination })
+
+    return (
+      library
+        .toM3U(jar, xml, destination)
+    )
   } else {
     if (t) {
-      tracks.toM3U(jar, xml, destination)
+      log(`Application "${name}" in process ${pid} watching Tracks.`)
+
+      return (
+        tracks
+          .toM3U(jar, xml, destination)
+      )
     }
 
     if (p) {
-      playlists.toM3U(jar, xml, destination)
+      log(`Application "${name}" in process ${pid} watching Playlists.`)
+
+      return (
+        playlists
+          .toM3U(jar, xml, destination)
+      )
     }
   }
 }
