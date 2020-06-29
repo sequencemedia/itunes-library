@@ -31,13 +31,17 @@
     "url": "https://github.com/sequencemedia/itunes-library/issues"
   },
   "scripts": {
+    "build": "npm run babel",
+    "build:watch": "npm run babel:watch",
+    "clean": "rimraf lib",
     "babel": "babel src -d lib",
+    "babel:watch": "npm run babel -- -w",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "start": "cross-env DEBUG=itunes-library* NODE_ENV=production node app",
     "start:dev": "cross-env DEBUG=itunes-library* NODE_ENV=development node app",
-    "build": "npm run babel",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prebuild": "npm run clean"
   },
   "dependencies": {
     "@sequencemedia/itunes-library-parser": "0.1.16",
@@ -46,8 +50,7 @@
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
-    "ps-list": "^7.2.0",
-    "supports-color": "^7.1.0"
+    "ps-list": "^7.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",
@@ -67,6 +70,7 @@
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-standard": "^4.0.1",
+    "rimraf": "^3.0.2"
   }
 }
