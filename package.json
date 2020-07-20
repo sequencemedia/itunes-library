@@ -44,13 +44,14 @@
     "prebuild": "npm run clean"
   },
   "dependencies": {
-    "@sequencemedia/itunes-library-parser": "0.1.16",
+    "@sequencemedia/itunes-library-parser": "0.1.17",
     "chokidar": "^3.4.1",
     "commander": "^6.0.0",
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
-    "ps-list": "^7.2.0"
+    "ps-list": "^7.2.0",
+    "supports-color": "^7.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
