@@ -46,7 +46,7 @@
   "dependencies": {
     "@sequencemedia/itunes-library-parser": "0.1.16",
     "chokidar": "^3.4.1",
-    "commander": "^5.1.0",
+    "commander": "^6.0.0",
     "cross-env": "^7.0.2",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
@@ -64,7 +64,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "core-js": "^3.6.5",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-import-resolver-babel-module": "^5.1.2",
     "eslint-plugin-import": "^2.22.0",
