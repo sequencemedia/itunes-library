@@ -9,17 +9,19 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    }
-  },
   "overrides": [
     {
-      "files": ["app.js"],
+      "files": [
+        "app.js"
+      ],
       "rules": {
         "no-useless-return": "off"
       }
     }
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }
