@@ -9,17 +9,22 @@
 *.json
 *.m3u8
 *.m3u
+/m3u
 /iTunes Library
 !package-lock.json
 !package.json
 
 # Production
 .env
-app.sh
-.npmrc
 
 # Execution
 bin
 
 # Build
 # lib
+
+# User-defined NPM configuration
+.npmrc
+
+# User-defined NVM configuration
+.nvmrc
