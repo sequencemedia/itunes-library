@@ -90,7 +90,7 @@ async function app () {
     destination = DESTINATION,
     tracks: t = false,
     playlists: p = false
-  } = commander
+  } = commander.opts()
 
   const l = (
     (t && p) || (!t && !p)
