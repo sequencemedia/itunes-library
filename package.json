@@ -51,7 +51,7 @@
     "debug": "^4.3.2",
     "dotenv": "^10.0.0",
     "ps-list": "^7.2.0",
-    "supports-color": "^9.0.1"
+    "supports-color": "^9.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
