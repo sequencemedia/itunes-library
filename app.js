@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-require('@babel/register')
-
 require('dotenv/config')
 
 const debug = require('debug')
@@ -14,7 +12,7 @@ const {
     tracks,
     playlists
   } = {}
-} = require('./src/watch')
+} = require('./lib/watch')
 
 const commander = require('commander')
 
