@@ -1,6 +1,6 @@
 {
   "name": "@sequencemedia/itunes-library",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "Watch iTunes Library XML and parse to M3U",
   "keywords": [
     "itunes",
