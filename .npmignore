@@ -3,9 +3,18 @@
 **/node_modules/**/*
 **/npm-debug.log
 
+.circleci
+.github
+
+.editorconfig
+.eslintignore
+.eslintrc
+
 # NPM
 .npmrc
 .npmignore
 
-.editorconfig
-.eslintignore
+# NVM
+.nvmrc
+
+.gitignore
