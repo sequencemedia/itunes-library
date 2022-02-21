@@ -14,9 +14,13 @@ const {
   } = {}
 } = require('./lib/watch')
 
-const commander = require('commander')
+const {
+  Command
+} = require('commander')
 
 const PACKAGE = require('./package')
+
+const commander = new Command()
 
 const NAME = 'il.App'
 process.title = NAME
