@@ -47,7 +47,7 @@
     "@babel/runtime": "^7.19.0",
     "@sequencemedia/itunes-library-parser": "0.1.22",
     "chokidar": "^3.5.3",
-    "commander": "^9.4.0",
+    "commander": "^9.4.1",
     "cross-env": "^7.0.3",
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",
