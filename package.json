@@ -44,7 +44,7 @@
     "prebuild": "npm run clean"
   },
   "dependencies": {
-    "@babel/runtime": "^7.20.7",
+    "@babel/runtime": "^7.20.13",
     "@sequencemedia/itunes-library-parser": "0.1.22",
     "chokidar": "^3.5.3",
     "commander": "^10.0.0",
